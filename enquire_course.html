@@ -346,10 +346,10 @@
         </div>
         <div class="frame-group">
           <div class="login-wrapper" id="frameContainer23">
-            <div class="min-20-sec"><a href="../login_page/login.html">Login</a></div>
+            <div class="min-20-sec"><a href="./login.html">Login</a></div>
           </div>
           <div class="sign-up-wrapper">
-            <div class="min-20-sec"><a href="../registration_page/registration_page.html">Sign Up</a></div>
+            <div class="min-20-sec"><a href="./registration_page.html">Sign Up</a></div>
           </div>
         </div>
       </div>
@@ -397,27 +397,19 @@
         popup1.style.display = "none";
         popup2.style.display = "none";
       }
-      const myForm = document.getElementById('myForm');
-      myform.addEventListener('submit', function(e){
+      cconst myForm = document.getElementById('myForm');
+  const btn = document.getElementById('btn');
+    btn.addEventListener('click', function(e){
         e.preventDefault();
-        const formData = new FormData(this)
-        const searchParams = new URLSearchParams();
-        for(const pair of formData){
-            searchParams.append(pair[0],pair[1]);
-        }
-        fetch("http://localhost:5050/api/users/enquire",{
+        const formData = new FormData(myForm);
+        fetch("http://ec2-13-126-43-216.ap-south-1.compute.amazonaws.com:5050/api/users/enquire",{
         method:"POST",
-        headers:{
-            'content-type': 'application/json'
-        }
-        ,
-        body: JSON.stringify(
-            searchParams
-        )
+        body: formData
+
     }).then(res=>{
         return res.json()
     })
-    });
+  });
     </script>
   </body>
 </html>
