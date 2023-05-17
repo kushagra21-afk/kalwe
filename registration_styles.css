@@ -174,7 +174,7 @@ body{
   }
   .login-wrapper{
     position: relative;
-    left: -2rem;
+/*     left: -2rem; */
     top:6rem;
     background: #F9DA78;
     border-radius: 36px;
@@ -186,7 +186,7 @@ body{
     color: #000000;
     border:0;
   }
-  .hr-div>*{
+/*   .hr-div>*{
     display: inline-block;
   }
   .hr-div{
@@ -279,7 +279,7 @@ body{
       font-size: 14px;
       font-family: "Roboto";
       font-weight: lighter;
-    }
+    } */
     .rectangle-box{
      width: 146px;  
       height: 40px;
