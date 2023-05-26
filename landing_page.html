@@ -482,7 +482,8 @@
           </div>
         </div>
       </div>
-      <form
+      <form id="myForm">
+      <div
         class="text-fields"
         method="post"
         id="contact"
@@ -491,17 +492,22 @@
         city
         e-mail
       >
-        <input class="input" type="text" placeholder="Contact Name" /><input
+        <input class="input" type="text" name="name" required placeholder="Contact Name" /><input
           class="adress-inputes"
           type="text"
-          placeholder="city"
-        /><input class="input1" type="text" placeholder="Contact Phone"/><input
+          name="city"
+          placeholder="city" required
+        /><input class="input1" name="phone" type="tel" required placeholder="Contact Phone"/><input
           class="input"
           type="email"
+          name="email"
           placeholder="E-mail"
+          required
         />
-      </form>
-      <button class="button"><b class="text">Submit</b></button>
+      </div>
+      <button type="submit" class="button"><b class="text">Submit</b></button>  
+    </form>
+      
       <footer class="tv-19-item" id="footer"></footer>
       <div class="kalwe-education-inc">© 2023 Kalwe Education Inc.</div>
       <div class="line-parent">
@@ -653,7 +659,7 @@
             <div class="div">+91</div>
             <input
               class="enter-contact-number"
-              type="text"
+              type="tel"
               placeholder="enter contact number"
               maxlength="{10}"
               minlength="{10}"
@@ -700,6 +706,19 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      const myForm = document.getElementById('myForm');
+          myForm.addEventListener('submit', function(e){
+              e.preventDefault();
+              const formData = new FormData(myForm);
+              fetch("http://ec2-13-126-43-216.ap-south-1.compute.amazonaws.com:5050/api/contact",{
+              method:"POST",
+              body: {formData}
+            }).then(
+            console.log(formData)).then(res=>{
+              return res.json(formData)
+            })
+          });
+    </script>
   </body>
 </html>
