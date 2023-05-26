@@ -85,7 +85,7 @@
             </li>
           </ul>
       </nav>
-            <form class="frame-container">
+            <form class="frame-container" id="myForm">
                 <div class="male-user-parent">
                   <img class="male-user-icon" alt="" src="./public/male-user@2x.png" />
         
@@ -100,7 +100,7 @@
                       </div>
                     </div>
                     <div class="frame-div">
-                      <input class="cursor-parent" placeholder="Ankit Mishra"></input>
+                      <input class="cursor-parent" name="name" placeholder="Ankit Mishra"></input>
                     </div>
                   </div>
                   <div class="dropdown">
@@ -111,7 +111,7 @@
                       </div>
                     </div>
                     <div class="frame-div">
-                        <input class="cursor-parent" type="date" required ></input>
+                        <input class="cursor-parent" name="dob" type="date" required ></input>
                     </div>
                   </div>
                   <div class="dropdown">
@@ -122,7 +122,7 @@
                       </div>
                     </div>
                     <div class="frame-div">
-                        <input class="cursor-parent" type="email" required placeholder="abc@gmail.com"></input>
+                        <input class="cursor-parent" name="email" type="email" required placeholder="abc@gmail.com"></input>
                     </div>
                   </div>
                   <div class="dropdown">
@@ -133,7 +133,7 @@
                       </div>
                     </div>
                     <div class="frame-div">
-                      <input class="cursor-parent" type="tel" minlength="10" maxlength="10" required placeholder="9999999999"></input>
+                      <input class="cursor-parent" name="phone" type="tel" minlength="10" maxlength="10" required placeholder="9999999999"></input>
                     </div>
                   </div>
                   <div class="dropdown-group">
@@ -145,14 +145,14 @@
                         </div>
                       </div>
                       <div class="frame-div">
-                        <select name="" class="cursor-parent" id="">
-                            <option value="a">Class 6th</option>
-                            <option value="b">Class 7th</option>
-                            <option value="c">Class 8th</option>
+                        <select name="class" class="cursor-parent">
+                            <option value="6th">Class 6th</option>
+                            <option value="7th">Class 7th</option>
+                            <option value="8th">Class 8th</option>
                         </select>
                       </div>
                     </div>
-                    <button class="save-wrapper">
+                    <button type="submit" class="save-wrapper">
                       <div class="save">Save</div>
                     </button>
                   </div>
@@ -183,6 +183,18 @@
               selectBtn.addEventListener("click", () => {
                 selectBtn.classList.toggle("open");
               });
-              </script>
+              const myForm = document.getElementById('myForm');
+          myForm.addEventListener('submit', function(e){
+              e.preventDefault();
+              const formData = new FormData(myForm);
+              fetch("http://ec2-13-126-43-216.ap-south-1.compute.amazonaws.com:5050/api/users/update",{
+              method:"PATCH",
+              body: {formData
+              }
+            }).then(res=>{
+                return res.json()
+            })
+          });
+        </script>
 </body>
 </html>
