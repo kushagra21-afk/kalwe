@@ -95,7 +95,7 @@
           <div class="class-10th-wrapper">
             <div class="class-10th">CLASS 10th</div>
           </div>
-          <!-- <div class="class-9th-wrapper">
+          <div class="class-9th-wrapper">
             <div class="class-10th">CLASS 9th</div>
           </div>
           <div class="class-9th-wrapper">
@@ -106,22 +106,10 @@
           </div>
           <div class="class-9th-wrapper">
             <div class="class-10th">CLASS 6th</div>
-          </div> -->
+          </div>
         </div>
-        <div class="frame-parent1">
-          <div class="frame-parent2">
-            <div class="image-42-parent">
-              <img
-                class="image-42-icon"
-                alt=""
-                src="./public/image-42_2x (2).png"
-              />
-
-              <div class="class-10th-parent">
-                <div class="class-10th">Class 9th</div>
-                <div class="science-full-course"><a href="./enquire_course.html">Maths Full Course</a></div>
-              </div>
-            </div>
+        <div class="frame-parent1" id="courses">
+          
             <!-- <div class="image-42-parent">
               <img
                 class="image-42-icon"
@@ -181,6 +169,27 @@
   selectBtn.addEventListener("click", () => {
     selectBtn.classList.toggle("open");
   });
+  fetch("http://ec2-13-126-43-216.ap-south-1.compute.amazonaws.com:5050/api/courses?all")
+        .then(res =>{
+            return res.json();
+        }).then(data =>{
+            data.data.forEach(element => {
+                const course = `<div class="frame-parent2">
+            <div class="image-42-parent">
+              <img
+                class="image-42-icon"
+                alt=""
+                src="./public/image-42_2x.png"
+              />
+
+              <div class="class-10th-parent">
+                <div class="class-10th">Class ${element.class}</div>
+                <div class="science-full-course"><a href="./enquire_course.html">${element.courseName} Full Course</a></div>
+              </div>
+            </div>`;
+                document.getElementById('courses').insertAdjacentHTML('beforeend', course);
+           });
+        })
   </script>
     
   </body>
